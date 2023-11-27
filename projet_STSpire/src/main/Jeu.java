@@ -2,6 +2,7 @@
 package main;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import librairies.StdDraw;
 import ressources.Affichage;
@@ -9,12 +10,46 @@ import ressources.AssociationTouches;
 import ressources.Config;
 
 public class Jeu {
+	
+	protected ArrayList<Room> list_of_rooms;
+	protected Hero hero;
+	protected ArrayList<Monster> list_of_monsters;
+	protected ArrayList<Card> list_of_cards;
+
+
 
 	public Jeu() throws Exception {
 	}
 
 	public boolean isOver() {
 		return false;
+	}
+
+
+	public GroupofMonsters select3Monsters() {
+		ArrayList<Monster> monsters = new ArrayList<Monster>();
+		/* 
+		 * add 3 monsters to the list
+		 */
+
+		return new GroupofMonsters(monsters);
+	}
+
+	public GroupofMonsters selectBoss() {
+		ArrayList<Monster> monsters = new ArrayList<Monster>();
+		/* 
+		 * add 1 boss to the list
+		 */
+
+		return new GroupofMonsters(monsters);
+	}
+
+
+	public Room selectNextRoom(Room currentRoom) {
+		RecoveryRoom RecoveryRoom = new  RecoveryRoom("pictures" + File.separator + "background.jpg",  new GroupofMonsters(new ArrayList<Monster>()), currentRoom.hero);
+		FightMonsters FightMonsters = new FightMonsters("pictures" + File.separator + "background.jpg",   select3Monsters(), currentRoom.hero);
+		BossFightRoom BossFightRoom = new BossFightRoom("pictures" + File.separator + "background.jpg",  selectBoss(), currentRoom.hero);
+		return RecoveryRoom;
 	}
 
 	public void display() {
@@ -55,6 +90,7 @@ public class Jeu {
 		else {
 			System.out.println("Autre touche");
 			display();
+			
 		}
 	}
 }
