@@ -14,17 +14,90 @@ public class Room {
     protected GroupofMonsters monsters;
     protected Hero hero;
     protected int nbMonsters = monsters.size();
+    protected int index;
+    protected boolean isOver = false;
+    protected boolean isWon = false;
+    protected Pack draw;
+    protected Pack discard;
+    protected Pack exhaust;
 
 
 
     Room(
         String bg,
         GroupofMonsters monsters, // lenght = 3 : FightMonsters ; lenght = 1 : BossFightRoom ; lenght = 0 : RecoveryRoom
-        Hero hero
+        Hero hero,
+        Pack draw,
+        Pack discard,
+        Pack exhaust,
+        int index
     ) {
         this.background = bg;
         this.monsters = monsters;
         this.hero = hero;
+        this.draw = draw;
+        this.discard = discard;
+        this.exhaust = exhaust;
+        this.index = index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public void setNbMonsters(int nbMonsters) {
+        this.nbMonsters = nbMonsters;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
+    }
+
+    public void setMonsters(GroupofMonsters monsters) {
+        this.monsters = monsters;
+    }
+
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
+
+    public void setDraw(Pack draw) {
+        this.draw = draw;
+    }
+
+    public void setDiscard(Pack discard) {
+        this.discard = discard;
+    }
+
+    public void setExhaust(Pack exhaust) {
+        this.exhaust = exhaust;
+    }
+
+
+
+
+    public int getIndex() {
+        return this.index;
+    }
+
+    public int getNbMonsters() {
+        return this.nbMonsters;
+    }
+
+    public String getBackground() {
+        return this.background;
+    }
+
+    public GroupofMonsters getMonsters() {
+        return this.monsters;
+    }
+
+    public Hero getHero() {
+        return this.hero;
+    }
+
+    public void draw() {
+        /* draw the room */
     }
 
     public void fight() {

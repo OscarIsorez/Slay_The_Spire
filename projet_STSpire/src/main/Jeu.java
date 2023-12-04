@@ -3,6 +3,7 @@ package main;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import librairies.StdDraw;
 import ressources.Affichage;
@@ -15,10 +16,31 @@ public class Jeu {
 	protected Hero hero;
 	protected ArrayList<Monster> list_of_monsters;
 	protected ArrayList<Card> list_of_cards;
+	List<String> order = new ArrayList<String>();
+	protected Room firstRoom;
+		
 
 
 
-	public Jeu() throws Exception {
+	public Jeu(
+	) throws Exception {
+		order.add("C");
+		order.add("C");
+		order.add("R");
+		order.add("C");
+		order.add("C");
+		order.add("C");
+		order.add("R");
+		order.add("C");
+		order.add("C");
+		order.add("C");
+		order.add("R");
+		order.add("C");
+		order.add("C");
+		order.add("R");
+		order.add("B");
+
+
 	}
 
 	public boolean isOver() {
@@ -31,6 +53,10 @@ public class Jeu {
 		/* 
 		 * add 3 monsters to the list
 		 */
+		// monsters.add(
+		// 	// new Monster("Petit Slime piquant", 12,  
+			
+		// );
 
 		return new GroupofMonsters(monsters);
 	}
@@ -44,16 +70,43 @@ public class Jeu {
 		return new GroupofMonsters(monsters);
 	}
 
-
+	
 	public Room selectNextRoom(Room currentRoom) {
-		RecoveryRoom RecoveryRoom = new  RecoveryRoom("pictures" + File.separator + "background.jpg",  new GroupofMonsters(new ArrayList<Monster>()), currentRoom.hero);
-		FightMonsters FightMonsters = new FightMonsters("pictures" + File.separator + "background.jpg",   select3Monsters(), currentRoom.hero);
-		BossFightRoom BossFightRoom = new BossFightRoom("pictures" + File.separator + "background.jpg",  selectBoss(), currentRoom.hero);
-		return RecoveryRoom;
+
+		int index = currentRoom.getIndex();
+		String room = order.get(index);
+		if(room.equals("C")) {
+			FightMonstersRoom FightMonsters = new FightMonstersRoom(
+				"pictures" + File.separator + "background.jpg",   select3Monsters(), currentRoom.hero, currentRoom.draw, currentRoom.discard, currentRoom.exhaust, currentRoom.index + 1);
+			return FightMonsters;
+		}
+		else if(room.equals("R")) {
+			RecoveryRoom RecoveryRoom = new  RecoveryRoom(
+				"pictures" + File.separator + "background.jpg", new GroupofMonsters(new ArrayList<Monster>()), currentRoom.hero, currentRoom.draw, currentRoom.discard, currentRoom.exhaust, currentRoom.index + 1);
+			return RecoveryRoom;
+		}
+		else if(room.equals("B")) {
+			BossFightRoom BossFightRoom = new BossFightRoom(
+				"pictures" + File.separator + "background.jpg",  selectBoss(),
+				currentRoom.hero, currentRoom.draw, currentRoom.discard, currentRoom.exhaust, currentRoom.index + 1);
+			return BossFightRoom;
+		}
+		else {
+			System.out.println("Error");
+		}
+
+		
+
+
+
+		
+		
+		return null;
 	}
 
 	public void display() {
         StdDraw.clear();
+
 		
 		// Affichage du fond
 		String pathBackground = "pictures" + File.separator + "background.jpg";
