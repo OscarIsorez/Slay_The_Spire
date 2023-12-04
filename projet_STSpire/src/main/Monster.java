@@ -1,18 +1,20 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
 
 public class Monster extends Character {
     protected String name;
-    protected int maxHP;
     protected PatternMonster pattern; 
-    protected int currentHP;
-    // protected moves = new ArrayList<Function>();
+    protected List<Function> moves;
 
 
-    public Monster(String name, int maxHP, PatternMonster pattern) {
+    public Monster(String name, int maxHP, PatternMonster pattern, ArrayList<Function> moves) {
+        super(maxHP, maxHP);
         this.name = name;
-        this.maxHP = maxHP;
-        this.currentHP = maxHP;
+        this.pattern = pattern;
+        this.moves = moves;
     
     }
 

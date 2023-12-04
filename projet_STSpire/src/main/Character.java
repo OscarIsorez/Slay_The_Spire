@@ -1,8 +1,12 @@
 package main;
 
 public class Character {
-    protected int hp;
     protected int maxHp;
-    protected int energy;
-    protected int maxEnergy;
+    protected int currentHp;
+
+    public Character(int maxHp, int currentHp) {
+        this.maxHp = maxHp;
+        this.currentHp = currentHp;
+    }
+
 }

@@ -22,6 +22,7 @@ public class Room {
     protected Pack exhaust;
 
 
+    // ------------------------------ CONSTRUCTORS ------------------------------ //
 
     Room(
         String bg,
@@ -40,6 +41,8 @@ public class Room {
         this.exhaust = exhaust;
         this.index = index;
     }
+
+    // ------------------------------ SETTERS ------------------------------ //
 
     public void setIndex(int index) {
         this.index = index;
@@ -73,7 +76,7 @@ public class Room {
         this.exhaust = exhaust;
     }
 
-
+    // ------------------------------ GETTERS ------------------------------ // 
 
 
     public int getIndex() {
@@ -96,9 +99,7 @@ public class Room {
         return this.hero;
     }
 
-    public void draw() {
-        /* draw the room */
-    }
+    // ------------------------------ METHODS ------------------------------ //
 
     public void fight() {
         /* logic of the fight */
